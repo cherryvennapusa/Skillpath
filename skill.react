@@ -1,0 +1,463 @@
+import React from "react";
+
+function App() {
+  const courses = [
+    {
+      title: "HTML & CSS",
+      description: "Learn how to create beautiful and responsive websites.",
+      icon: "🌐",
+    },
+    {
+      title: "JavaScript",
+      description:
+        "Learn JavaScript fundamentals and build interactive websites.",
+      icon: "⚡",
+    },
+    {
+      title: "Java",
+      description: "Learn Java programming and improve your problem-solving skills.",
+      icon: "☕",
+    },
+    {
+      title: "Python",
+      description: "Learn Python from basics and start building real projects.",
+      icon: "🐍",
+    },
+    {
+      title: "React",
+      description: "Build modern and interactive web applications using React.",
+      icon: "⚛️",
+    },
+    {
+      title: "Data Science",
+      description:
+        "Explore data analysis, visualization and machine learning.",
+      icon: "📊",
+    },
+  ];
+
+  return (
+    <>
+      <style>{`
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        html {
+          scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: Arial, sans-serif;
+          background: #f5f8ff;
+          color: #1f2937;
+        }
+
+        .app {
+          width: 100%;
+        }
+
+        /* Navigation */
+        .navbar {
+          width: 100%;
+          padding: 20px 8%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: white;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+
+        .navbar h1 {
+          color: #2563eb;
+          font-size: 30px;
+        }
+
+        .navbar nav {
+          display: flex;
+          gap: 30px;
+        }
+
+        .navbar nav a {
+          text-decoration: none;
+          color: #374151;
+          font-size: 17px;
+          font-weight: 500;
+        }
+
+        .navbar nav a:hover {
+          color: #2563eb;
+        }
+
+        /* Hero */
+        .hero {
+          min-height: 600px;
+          padding: 80px 8%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 50px;
+          background: linear-gradient(135deg, #eff6ff, #ffffff);
+        }
+
+        .hero-content {
+          max-width: 650px;
+        }
+
+        .hero-content h2 {
+          font-size: 60px;
+          line-height: 1.15;
+          color: #1e3a8a;
+          margin-bottom: 25px;
+        }
+
+        .hero-content h2 span {
+          color: #2563eb;
+        }
+
+        .hero-content p {
+          font-size: 20px;
+          line-height: 1.7;
+          color: #6b7280;
+          margin-bottom: 35px;
+        }
+
+        .start-btn {
+          display: inline-block;
+          padding: 14px 28px;
+          background: #2563eb;
+          color: white;
+          text-decoration: none;
+          border-radius: 8px;
+          font-size: 17px;
+          font-weight: bold;
+        }
+
+        .start-btn:hover {
+          background: #1d4ed8;
+        }
+
+        /* Hero Card */
+        .hero-card {
+          width: 300px;
+          padding: 35px 25px;
+          text-align: center;
+          background: white;
+          border-radius: 18px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .graduation-icon {
+          font-size: 45px;
+          margin-bottom: 15px;
+        }
+
+        .hero-card h3 {
+          font-size: 24px;
+          color: #1e3a8a;
+          margin-bottom: 15px;
+        }
+
+        .hero-card p {
+          color: #6b7280;
+          line-height: 1.6;
+        }
+
+        /* Courses */
+        .courses {
+          padding: 80px 8%;
+          text-align: center;
+          background: white;
+        }
+
+        .courses h2,
+        .features h2,
+        .about h2 {
+          font-size: 38px;
+          color: #1e3a8a;
+          margin-bottom: 15px;
+        }
+
+        .section-text {
+          color: #6b7280;
+          font-size: 18px;
+          margin-bottom: 45px;
+        }
+
+        .course-container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 25px;
+        }
+
+        .course-card {
+          padding: 30px;
+          background: #f8fafc;
+          border-radius: 15px;
+          border: 1px solid #e5e7eb;
+          transition: 0.3s;
+        }
+
+        .course-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-icon {
+          font-size: 45px;
+          margin-bottom: 15px;
+        }
+
+        .course-card h3 {
+          font-size: 23px;
+          color: #1e3a8a;
+          margin-bottom: 12px;
+        }
+
+        .course-card p {
+          color: #6b7280;
+          line-height: 1.6;
+          margin-bottom: 20px;
+        }
+
+        .course-card button {
+          padding: 11px 20px;
+          border: none;
+          border-radius: 7px;
+          background: #2563eb;
+          color: white;
+          cursor: pointer;
+          font-size: 15px;
+        }
+
+        .course-card button:hover {
+          background: #1d4ed8;
+        }
+
+        /* Features */
+        .features {
+          padding: 80px 8%;
+          text-align: center;
+          background: #eff6ff;
+        }
+
+        .feature-container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 25px;
+          margin-top: 40px;
+        }
+
+        .feature-card {
+          background: white;
+          padding: 35px 25px;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-card div {
+          font-size: 40px;
+          margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+          color: #1e3a8a;
+          font-size: 22px;
+          margin-bottom: 12px;
+        }
+
+        .feature-card p {
+          color: #6b7280;
+          line-height: 1.6;
+        }
+
+        /* About */
+        .about {
+          padding: 80px 15%;
+          text-align: center;
+          background: white;
+        }
+
+        .about p {
+          max-width: 800px;
+          margin: 15px auto;
+          color: #6b7280;
+          font-size: 18px;
+          line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+          padding: 25px;
+          text-align: center;
+          background: #1e3a8a;
+          color: white;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+          .navbar {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .navbar nav {
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .hero {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .hero-content h2 {
+            font-size: 42px;
+          }
+
+          .course-container,
+          .feature-container {
+            grid-template-columns: 1fr;
+          }
+
+          .hero-card {
+            width: 100%;
+            max-width: 350px;
+          }
+        }
+      `}</style>
+
+      <div className="app">
+
+        {/* Navigation */}
+        <header className="navbar">
+          <h1>SkillPath</h1>
+
+          <nav>
+            <a href="#home">Home</a>
+            <a href="#courses">Courses</a>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+          </nav>
+        </header>
+
+        {/* Hero */}
+        <section className="hero" id="home">
+          <div className="hero-content">
+            <h2>
+              Learn Skills.
+              <br />
+              <span>Build Your Future.</span>
+            </h2>
+
+            <p>
+              Improve your technical skills with practical courses,
+              interactive learning and real-world projects.
+            </p>
+
+            <a href="#courses" className="start-btn">
+              Explore Courses
+            </a>
+          </div>
+
+          <div className="hero-card">
+            <div className="graduation-icon">🎓</div>
+
+            <h3>Start Learning Today</h3>
+
+            <p>
+              Choose a skill, learn step by step and create projects
+              that showcase your knowledge.
+            </p>
+          </div>
+        </section>
+
+        {/* Courses */}
+        <section className="courses" id="courses">
+          <h2>Popular Courses</h2>
+
+          <p className="section-text">
+            Choose a course and start building your skills today.
+          </p>
+
+          <div className="course-container">
+            {courses.map((course, index) => (
+              <div className="course-card" key={index}>
+                <div className="course-icon">{course.icon}</div>
+
+                <h3>{course.title}</h3>
+
+                <p>{course.description}</p>
+
+                <button>Start Learning</button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Features */}
+        <section className="features" id="features">
+          <h2>Why Choose SkillPath?</h2>
+
+          <div className="feature-container">
+
+            <div className="feature-card">
+              <div>📖</div>
+              <h3>Easy Learning</h3>
+              <p>
+                Learn concepts in a simple and understandable way.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div>💻</div>
+              <h3>Practical Projects</h3>
+              <p>
+                Practice your knowledge by creating real-world projects.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div>🚀</div>
+              <h3>Build Your Career</h3>
+              <p>
+                Develop useful skills that can help you grow professionally.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* About */}
+        <section className="about" id="about">
+          <h2>About SkillPath</h2>
+
+          <p>
+            SkillPath is a learning platform designed to help students
+            develop technical skills through simple lessons, practical
+            exercises and real-world projects.
+          </p>
+
+          <p>
+            Our goal is to make learning easier, practical and useful
+            for students preparing for their careers.
+          </p>
+        </section>
+
+        {/* Footer */}
+        <footer>
+          <p>© 2026 SkillPath | Learn • Build • Grow</p>
+        </footer>
+
+      </div>
+    </>
+  );
+}
+
+export default App;
